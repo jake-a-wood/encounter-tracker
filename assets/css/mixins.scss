@@ -1,0 +1,18 @@
+@function gh($value) {
+    @return $value * 4.167vh;
+}
+
+@function gw($value) {
+    @return $value * 6.25vw;
+}
+
+@mixin size($width, $height) {
+    width: gw($width);
+    height: gh($height);
+}
+
+@mixin break($threshold) {
+    @media screen and (min-width: $threshold) {
+        @content;
+    }
+}
