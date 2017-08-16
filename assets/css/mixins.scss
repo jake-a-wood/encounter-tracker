@@ -7,6 +7,7 @@
 }
 
 @mixin size($width, $height) {
+    /* size($width, $height) */
     width: gw($width);
     height: gh($height);
 }
