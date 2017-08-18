@@ -2,13 +2,15 @@
 // Entities Store
 //
 
+import Entity from '~/objectSchemas/entity.js'
+
 export const state = () => ({
     entities : []
 })
 
 export const mutations = {
     create (state) {
-        state.entities.push({id:Math.random()})
+        state.entities.push(new Entity())
     },
 
     update (state) {
