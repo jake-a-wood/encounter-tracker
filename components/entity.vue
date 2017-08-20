@@ -2,14 +2,18 @@
 <div class="root">
 
     <div class="col name">
-        <div>{{name}}</div>
+        <div>
+            {{name}}
+        </div>
     </div>
     
     <div class="col conditions">
     </div>
 
     <div class="col hp">
-        <div>{{hp}}</div>
+        <div>
+            {{hp}}
+        </div>
     </div>
 
 </div>
@@ -17,7 +21,7 @@
 
 <script>
 export default {
-    props : ['name', 'hp']
+    props : ['name', 'conditions', 'hp']
 }
 </script>
 
@@ -34,9 +38,9 @@ export default {
 }
 
 .col {
-    margin: 0 gw(.5);
-    display: flex;
-    align-items: center;
+    // margin: 0 gw(.5);
+    // display: flex;
+    // align-items: center;
 
     // &:last-child {
     //     margin: 0;
@@ -45,20 +49,19 @@ export default {
 
 .name {
     width: gw(7);
-    // background-color: rgba(green, .75);
     display: flex;
     align-content: center;
+    // background-color: rgba(green, .75);
 }
 .conditions {
-    width: gw(3);
+    // width: gw(3);
     // background-color: rgba(purple, .75);
 }
 
 .hp {
     width: gw(2);
-    // background-color: rgba(red, .75);
     display: flex;
     justify-content: flex-end;
+    // background-color: rgba(red, .75);
 }
-
 </style>

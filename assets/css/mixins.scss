@@ -1,9 +1,9 @@
 @function gh($value) {
-    @return $value * 4.167vh;
+    @return $value * 5vh;
 }
 
 @function gw($value) {
-    @return $value * 6.25vw;
+    @return $value * 5vw;
 }
 
 @mixin size($width, $height) {

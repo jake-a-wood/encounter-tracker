@@ -1,16 +1,9 @@
-<style lang="scss" scoped>
-// @import '~assets/css/test.scss';
-// .root {
-	// @include test;
-// }
-</style>
-
 <template>
 <div class="root">
 
-	<action-menu/>
+	<action-menu class="action-menu"/>
 
-	<turn-tracker/>
+	<turn-tracker class="turn-tracker"/>
 
 </div>
 </template>
@@ -41,3 +34,17 @@ export default {
 	}
 }
 </script>
+
+<style lang="scss" scoped>
+@import '~assets/css/mixins.scss';
+
+.root {
+	// height: gh(20);
+	height: 100%;
+	overflow: hidden;
+}
+
+.action-menu {
+	// background-color: red;
+}
+</style>

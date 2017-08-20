@@ -2,10 +2,11 @@
 <div class="root">
 
     <div class="icon">
-        <div>{{text}}</div>
+        <div>
+            {{text}}
+        </div>
         <i :class="iconClass" 
             aria-hidden="true"></i>
-        <!-- <i class="fa fa-arrow-left" aria-hidden="true"></i> -->
     </div>
 
 </div>
@@ -31,17 +32,17 @@ export default {
 
 .root {
     @include size(2,2);
-    background-color: grey;
+    color: #fff;
+    background-color: black;
     display: flex;
     justify-content: center;
     align-items: center;
-}
 
-.icon {
-    @include size(1,1);
-    // background-color: red;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    .icon {
+        @include size(1,1);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 }
 </style>

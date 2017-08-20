@@ -1,15 +1,14 @@
 <template>
 <div class="root">
 
-    <entity v-for="entity in entities" 
+    <entity v-if="showEntityList"
+        v-for="entity in entities" 
         :key="entity.id"
-        name="Fredrick" hp="120" />
+        :name="entity.name" 
+        :conditions="entity.conditions" 
+        :hp="entity.hp" />
 
-    <!-- <entity name="Fredrick" hp="120" />
-    <entity name="Kuthrick Adult" hp="12" />
-    <entity name="Thomas" hp="80" /> -->
-
-    <entity-detail/>
+    <entity-detail v-if="showEntityDetail" />
 
 </div>
 </template>
@@ -24,12 +23,31 @@ export default {
         EntityDetail
     },
     computed : {
+        showEntityList () {
+            return !this.editableEntities.length
+        },
+
+        showEntityDetail () {
+            return this.editableEntities.length
+        },
+
         entities () {
             return this.$store.getters['entities/read']
+        },
+        
+        editableEntities () {
+            return this.$store.getters['entities/editable']
         }
     }
 }
 </script>
 
-<style lang="scss" scope>
+<style lang="scss" scoped>
+@import '~assets/css/mixins.scss';
+
+.root {
+    height: 90%;
+    overflow: scroll;
+    // background-color: blue;
+}
 </style>
