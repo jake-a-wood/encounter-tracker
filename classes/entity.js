@@ -6,9 +6,11 @@ class Entity {
     constructor () {
         this.id = Math.random()
         this.name = ''
-        this.hp = 0
+        this.hp = 1
+        this.damage = 0
         this.conditions = []
         this.initiative = 0
+        this.inititativeEntry = false
         this.editable = true
         this.activeTurn = false
     }
@@ -19,8 +21,16 @@ class Entity {
         this.conditions = payload['conditions'] ? payload.conditions : this.conditions
         this.initiative = payload['initiative'] ? payload.initiative : this.initiative
         this.editable = typeof payload['editable'] == 'boolean' ? payload.editable : this.editable
-        this.activeTurn = payload['activeTurn'] ? payload.activeTurn : this.activeTurn
-        console.log(this)
+        this.activeTurn = typeof payload['activeTurn'] == 'boolean' ? payload.activeTurn : this.activeTurn
+        this.inititativeEntry = typeof payload['inititativeEntry'] == 'boolean' ? payload.inititativeEntry : this.inititativeEntry
+    }
+
+    currentHP () {
+        return this.hp - this.damage
+    }
+
+    bloodied () {
+        return this.currentHP <= Math.floor(this.hp / 2)
     }
 }
 

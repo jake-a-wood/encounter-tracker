@@ -1,21 +1,19 @@
 <template>
 <div class="root">
 
-    <entity 
-        :name="entity.name" 
-        :hp="entity.hp" 
-        :conditions="entity.conditions" />
+	<entity 
+		:entity="entity" />
 
-    <div class="input-field">
+	<div class="input-field">
 		<label>
 			Name
 		</label>
-        <input placeholder="Name"
-            type="text"
+		<input placeholder="Name"
+			type="text"
 			@keyup="onNameChange" />
-    </div>
+	</div>
 
-    <div class="input-field">
+	<div class="input-field">
 		<label>
 			Hit Points
 		</label>
@@ -23,7 +21,7 @@
 		<input placeholder="HP"
 			type="number"
 			@keyup="onHPChange" />
-    </div>
+	</div>
 
 </div>
 </template>
@@ -32,9 +30,9 @@
 import Entity from '~/components/entity'
 
 export default {
-    components : {
-        Entity
-    },
+	components : {
+		Entity
+	},
 	methods : {
 		onNameChange (e) {
 			this.$store.commit('entities/update', {
@@ -49,19 +47,19 @@ export default {
 			})
 		},
 	},
-    computed : {
-        entity () {
-            return this.$store.getters['entities/currentEditableEntity']
-        },
+	computed : {
+		entity () {
+			return this.$store.getters['entities/currentEditableEntity']
+		},
 
-        entities () {
-            return this.$store.getters['entities/read']
-        },
+		entities () {
+			return this.$store.getters['entities/read']
+		},
 
-        editableEntities () {
-            return this.$store.getters['entities/editable']
-        }
-    }
+		editableEntities () {
+			return this.$store.getters['entities/editable']
+		}
+	}
 }
 </script>
 

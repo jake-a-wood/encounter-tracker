@@ -1,14 +1,12 @@
 <template>
 <div class="root">
 
-    <entity v-if="showEntityList"
-        v-for="entity in entities" 
-        :key="entity.id"
-        :name="entity.name" 
-        :conditions="entity.conditions" 
-        :hp="entity.hp" />
+	<entity v-if="showEntityList"
+		v-for="entity in entities" 
+		:key="entity.id"
+		:entity="entity" />
 
-    <entity-detail v-if="showEntityDetail" />
+	<entity-detail v-if="showEntityDetail" />
 
 </div>
 </template>
@@ -18,27 +16,27 @@ import Entity from '~/components/entity'
 import EntityDetail from '~/components/entityDetail'
 
 export default {
-    components : {
-        Entity,
-        EntityDetail
-    },
-    computed : {
-        showEntityList () {
-            return !this.editableEntities.length
-        },
+	components : {
+		Entity,
+		EntityDetail
+	},
+	computed : {
+		showEntityList () {
+			return !this.editableEntities.length
+		},
 
-        showEntityDetail () {
-            return this.editableEntities.length
-        },
+		showEntityDetail () {
+			return this.editableEntities.length
+		},
 
-        entities () {
-            return this.$store.getters['entities/read']
-        },
-        
-        editableEntities () {
-            return this.$store.getters['entities/editable']
-        }
-    }
+		entities () {
+			return this.$store.getters['entities/read']
+		},
+		
+		editableEntities () {
+			return this.$store.getters['entities/editable']
+		}
+	}
 }
 </script>
 
@@ -46,8 +44,8 @@ export default {
 @import '~assets/css/mixins.scss';
 
 .root {
-    height: 90%;
-    overflow: scroll;
-    // background-color: blue;
+	height: 90%;
+	overflow: scroll;
+	// background-color: blue;
 }
 </style>
