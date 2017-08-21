@@ -43,12 +43,7 @@ export default {
 @import '~assets/css/mixins.scss';
 
 .root {
-	// height: gh(20);
 	height: 100%;
 	overflow: hidden;
-}
-
-.action-menu {
-	// background-color: red;
 }
 </style>

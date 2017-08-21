@@ -8,7 +8,7 @@
 
 		<div class="input-field">
 			<input type="number" 
-				value="0"
+				:value="userInitEntry"
 				@keyup="onInitKeyup"/>
 			
 			<button @click="onSubmitClick">
@@ -37,12 +37,19 @@ export default {
 				inititativeEntry : false
 			})
 			this.$store.commit('entities/sortByInit')
+			this.userInitEntry = ''
+		}
+	},
+	data () {
+		return {
+			userInitEntry : ''
 		}
 	},
 	computed : {
 		entity () {
 			return this.$store.getters['entities/currentInitiativeEntry']
 		},
+		
 		entities () {
 			return this.$store.getters['entities/read']
 		},

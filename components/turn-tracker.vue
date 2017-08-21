@@ -4,9 +4,9 @@
 	<entity v-if="showEntityList"
 		v-for="entity in entities" 
 		:key="entity.id"
-		:entity="entity" />
+		:entity="entity"/>
 
-	<entity-detail v-if="showEntityDetail" />
+	<entity-detail v-if="showEntityDetail"/>
 
 </div>
 </template>
@@ -46,6 +46,5 @@ export default {
 .root {
 	height: 90%;
 	overflow: scroll;
-	// background-color: blue;
 }
 </style>

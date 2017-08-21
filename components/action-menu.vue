@@ -8,9 +8,10 @@
 		<btn icon="sort-numeric-asc"
 			@click.native="onInitiativeClick"/>
 		
-		<btn text="2"/>
+		<btn :text="currentRound"/>
 		
-		<btn icon="arrow-up"/>
+		<btn icon="arrow-up"
+			@click.native="onPrevTurnClick"/>
 
 		<btn icon="arrow-down"
 			@click.native="onNextTurnClick"/>
@@ -48,10 +49,15 @@ export default {
 
 		onInitiativeClick (e) {
 			this.$store.commit('entities/resetAllInitiative')
+			this.$store.commit('encounter/resetRound')
+		},
+
+		onPrevTurnClick (e) {
+			// this.$store.dispatch('encounter/prevTurn')
 		},
 
 		onNextTurnClick (e) {
-			this.$store.commit('entities/next')
+			this.$store.dispatch('encounter/nextTurn')
 		},
 
 		onSubmitClick (e) {
@@ -76,6 +82,10 @@ export default {
 
 		currentEditableEntity () {
 			return this.$store.getters['entities/currentEditableEntity']
+		},
+
+		currentRound () {
+			return this.$store.getters['encounter/round']
 		}
 	}
 }

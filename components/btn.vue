@@ -31,7 +31,7 @@ export default {
 @import '~assets/css/mixins.scss';
 
 .root {
-    @include size(2,2);
+    @include size(4,2);
     color: #fff;
     background-color: black;
     display: flex;

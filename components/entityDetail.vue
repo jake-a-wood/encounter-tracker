@@ -1,8 +1,7 @@
 <template>
 <div class="root">
 
-	<entity 
-		:entity="entity" />
+	<entity :entity="entity" />
 
 	<div class="input-field">
 		<label>
@@ -40,6 +39,7 @@ export default {
 				name : e.currentTarget.value
 			})
 		},
+		
 		onHPChange (e) {
 			this.$store.commit('entities/update', {
 				id : this.entity.id,
@@ -71,8 +71,15 @@ export default {
 		margin: gh(1);
 	}
 
+	label {
+		padding-bottom: gh(.25);
+		display: block;
+	}
+
 	input {
 		width: 100%;
+		height: gh(1);
+		padding: gh(.25) gw(.25);
 	}
 }
 </style>
