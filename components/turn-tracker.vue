@@ -35,7 +35,7 @@ export default {
 		
 		editableEntities () {
 			return this.$store.getters['entities/editable']
-		}
+		},
 	}
 }
 </script>

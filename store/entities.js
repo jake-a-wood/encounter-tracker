@@ -24,7 +24,17 @@ export const mutations = {
 
 	sortByInit (state) {
 		state.entities
-		.sort((a, b) => parseInt(a.initiative) < parseInt(b.initiative))
+		.sort((a, b) => {
+			if(parseInt(a.initiative) < parseInt(b.initiative)) {
+				return 1
+			}
+			
+			if(parseInt(a.initiative) > parseInt(b.initiative)) {
+				return -1
+			}
+			
+			return 0
+		})
 
 		state.entities
 		.forEach(entity => { entity.update({ activeTurn : false }) })
