@@ -7,7 +7,7 @@
 		<label>
 			Name
 		</label>
-		<input placeholder="Name"
+		<input :placeholder="placeholder"
 			type="text"
 			@keyup="onNameChange" />
 	</div>
@@ -35,14 +35,14 @@ export default {
 	methods : {
 		onNameChange (e) {
 			this.$store.commit('entities/update', {
-				id : this.entity.id,
+				entity : this.entity,
 				name : e.currentTarget.value
 			})
 		},
 		
 		onHPChange (e) {
 			this.$store.commit('entities/update', {
-				id : this.entity.id,
+				entity : this.entity,
 				hp : e.currentTarget.value
 			})
 		},
@@ -58,6 +58,10 @@ export default {
 
 		editableEntities () {
 			return this.$store.getters['entities/editable']
+		},
+		placeholder () {
+			let x = Math.random()
+			return x > .5 ? 'Name' : 'Paul is a faggot?'
 		}
 	}
 }
@@ -80,6 +84,19 @@ export default {
 		width: 100%;
 		height: gh(1);
 		padding: gh(.25) gw(.25);
+	}
+
+	.delete {
+		margin: gh(2) gh(1) gh(1) gh(1);
+
+		button {
+			width: 100%;
+			padding: gh(.25) gw(.25);
+			background-color: red;
+			color: white;
+			font-weight: bold;
+			border: solid 2px grey;
+		}
 	}
 }
 </style>

@@ -7,6 +7,8 @@
 
 	<initiative-modal />
 
+	<hp-modal />
+
 </div>
 </template>
 
@@ -14,12 +16,14 @@
 import ActionMenu from '~/components/action-menu'
 import TurnTracker from '~/components/turn-tracker'
 import InitiativeModal from '~/components/initiative-modal'
+import HpModal from '~/components/hp-modal'
 
 export default {
 	components: {
 		ActionMenu,
 		TurnTracker,
-		InitiativeModal
+		InitiativeModal,
+		HpModal
 	},
 	head: {
 		titleTemplate: 'Encounter Tracker',

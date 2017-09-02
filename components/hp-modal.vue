@@ -3,19 +3,25 @@
 
 	<div class="modal">
 		<div class="title">
-			{{entity.name || entity.id}}'s initiative:
+			{{entity.name || entity.id}}
 		</div>
 
 		<div class="input-field">
 			<input type="number" 
-				:value="userInitEntry"
-				@keyup="onInitKeyup"/>
-			
-			<button @click="onSubmitClick">
-				<i class="fa fa-check" 
+				@keyup="onHpKeyup"/>			
+		</div>
+
+        <div class="input-field">
+			<button @click="onHealClick">
+				<i class="fa fa-plus" 
             		aria-hidden="true"></i>
 			</button>
-		</div>
+
+            <button @click="onDamageClick">
+				<i class="fa fa-minus" 
+            		aria-hidden="true"></i>
+			</button>
+        </div>
 	</div>
 
 </div>
@@ -24,30 +30,32 @@
 <script>
 export default {
 	methods : {
-		onInitKeyup (e) {
-			this.$store.commit('entities/update', {
-				entity : this.entity,
-				initiative : e.currentTarget.value
-			})
+		onHpKeyup (e) {
+            this.hpEffect = e.currentTarget.value
 		},
 
-		onSubmitClick (e) {
-			this.$store.commit('entities/update', {
-				entity : this.entity,
-				inititativeEntry : false
-			})
-			this.$store.commit('entities/sortByInit')
-			this.userInitEntry = ''
-		}
+		onDamageClick (e) {
+            this.$store.commit('entities/damage', {
+                entity : this.entity,
+                hp: this.hpEffect
+            })
+		},
+
+        onHealClick (e) {
+            this.$store.commit('entities/heal', {
+                entity : this.entity,
+                hp: this.hpEffect
+            })
+        }
 	},
 	data () {
 		return {
-			userInitEntry : ''
+			hpEffect : 0
 		}
 	},
 	computed : {
 		entity () {
-			return this.$store.getters['entities/currentInitiativeEntry']
+			return this.$store.getters['entities/needsDamageHeal']
 		},
 	}
 }
@@ -85,14 +93,14 @@ export default {
 	
 	input {
 		display: inline;
-		width: 60%;
+		width: 100%;
 		height: gh(1);
 		padding: gh(.25) gw(.25);
 	}
 	
 	button {
 		display: inline;
-		width: 40%;
+		width: 50%;
 		height: gh(1);
 		color: green;
 	}

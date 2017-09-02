@@ -5,9 +5,10 @@
 		v-if="entity.activeTurn">
 	</div>
 
-	<div class="name">
+	<div class="name"
+		@click="onNameClick">
 		<div>
-			{{entity.name}}
+			{{entity.name || entity.id}}
 		</div>
 	</div>
 	
@@ -37,7 +38,16 @@ export default {
 	props : ['entity'],
 	methods : {
 		onHpClick (e) {
-			
+			this.$store.commit('entities/update', {
+				entity : this.entity,
+				needsDamageHeal : true
+			})
+		},
+		onNameClick (e) {
+			this.$store.commit('entities/update', {
+				entity : this.entity,
+				editable : true
+			})
 		}
 	},
 	computed : {

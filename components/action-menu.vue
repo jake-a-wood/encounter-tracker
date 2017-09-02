@@ -8,7 +8,8 @@
 		<btn icon="sort-numeric-asc"
 			@click.native="onInitiativeClick"/>
 		
-		<btn :text="currentRound"/>
+		<btn class="round-number"
+			:text="currentRound"/>
 		
 		<btn icon="arrow-up"
 			@click.native="onPrevTurnClick"/>
@@ -29,7 +30,8 @@
 		<btn/>
 
 		<btn icon="times"
-			class="red"/>
+			class="red"
+			@click.native="onDeleteClick"/>
 	</template>
 
 </div>
@@ -53,7 +55,7 @@ export default {
 		},
 
 		onPrevTurnClick (e) {
-			// this.$store.dispatch('encounter/prevTurn')
+			this.$store.dispatch('encounter/prevTurn')
 		},
 
 		onNextTurnClick (e) {
@@ -62,8 +64,14 @@ export default {
 
 		onSubmitClick (e) {
 			this.$store.commit('entities/update', {
-				id : this.currentEditableEntity.id,
+				entity : this.currentEditableEntity,
 				editable : false
+			})
+		},
+
+		onDeleteClick (e) {
+			this.$store.commit('entities/delete', {
+				entity : this.currentEditableEntity
 			})
 		}
 	},
@@ -107,6 +115,12 @@ export default {
 
 	.red {
 		color: red;
+	}
+
+	.round-number {
+		font-weight: bold;
+		background-color: white;
+		color: black;
 	}
 }
 </style>
