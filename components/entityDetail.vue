@@ -7,7 +7,7 @@
 		<label>
 			Name
 		</label>
-		<input :placeholder="placeholder"
+		<input placeholder="Name"
 			type="text"
 			@keyup="onNameChange" />
 	</div>
@@ -59,10 +59,6 @@ export default {
 		editableEntities () {
 			return this.$store.getters['entities/editable']
 		},
-		placeholder () {
-			let x = Math.random()
-			return x > .5 ? 'Name' : 'Paul is a faggot?'
-		}
 	}
 }
 </script>
