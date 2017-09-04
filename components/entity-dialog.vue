@@ -52,6 +52,8 @@ export default {
 				name : this.name
 			})
 			this.$emit('close')
+			this.hp = 1
+			this.name = ''
 		}
 	}
 }

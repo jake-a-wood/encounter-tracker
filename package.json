@@ -3,6 +3,11 @@
   "version": "1.0.0",
   "description": "Tracks encounters for D&D 4e",
   "main": "index.js",
+  "config" : {
+    "nuxt": {
+      "port" : "3001"
+    }
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nuxt",

@@ -1,7 +1,7 @@
 <template>
 <v-app dark class="application--footer application--toolbar">
 
-	<v-navigation-drawer></v-navigation-drawer>
+	<!-- <v-navigation-drawer></v-navigation-drawer> -->
 
 	<v-toolbar>
 		<v-chip class="teal white--text">
@@ -31,7 +31,7 @@
 		@close="onDialogClose" />
 
 	<main>
-		<v-container fluid>
+		<v-container fluid class="scroll">
 
 			<nuxt/>
 
@@ -77,4 +77,11 @@ export default {
 .no-margin {
 	margin: 0
 }
+
+.scroll {
+	height: calc(100vh - 64px - 36px);
+    overflow: scroll;
+	overflow-x: hidden;
+	overflow-y: scroll;
+} 
 </style>
