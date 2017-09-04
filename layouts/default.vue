@@ -1,16 +1,80 @@
 <template>
-  <nuxt/>
+<v-app dark class="application--footer application--toolbar">
+
+	<v-navigation-drawer></v-navigation-drawer>
+
+	<v-toolbar>
+		<v-chip class="teal white--text">
+			Round 0
+		</v-chip>
+		
+		<v-spacer></v-spacer>
+
+		<v-btn icon>
+			<v-icon>fa-sort-amount-desc</v-icon>
+		</v-btn>
+
+		<v-spacer></v-spacer>
+		
+		<v-btn icon>
+			<v-icon>fa-arrow-up</v-icon>
+		</v-btn>
+
+		<v-spacer></v-spacer>
+
+		<v-btn icon>
+			<v-icon>fa-arrow-down</v-icon>
+		</v-btn>
+	</v-toolbar>
+
+	<entity-dialog :show="showDialog"
+		@close="onDialogClose" />
+
+	<main>
+		<v-container fluid>
+
+			<nuxt/>
+
+		</v-container>
+	</main>
+
+	<v-footer :absolute="footer.fixed">
+		<v-flex xs12 class="text-xs-center">
+			<v-btn class="indigo no-margin"
+				@click="onAddClick">
+				<v-icon>add</v-icon>
+			</v-btn>
+		</v-flex>
+	</v-footer>
+
+</v-app>
 </template>
 
-<style lang="scss">
-html {
-    font-family: Arial, sans-serif;
-    background-color: rgba(#000, .25);
-    // height: 100%;
+<script>
+import EntityDialog from '~/components/entity-dialog.vue'
+export default {
+	components : {
+		EntityDialog
+	},
+	data: () => ({
+		footer: {
+			fixed: true
+		},
+		showDialog : false
+	}),
+	methods : {
+		onAddClick (e) {
+			this.showDialog = true
+		},
+		onDialogClose (e) {
+			this.showDialog = false
+		}
+	}
 }
+</script>
 
-
-body {
-  // height: 100%;
+<style scoped>
+.no-margin {
+	margin: 0
 }
 </style>

@@ -5,10 +5,10 @@
 let entityCount = 0
 
 class Entity {
-	constructor () {
+	constructor (values) {
 		this.id = entityCount
-		this.name = ''
-		this.hp = 1
+		this.name = values.name
+		this.hp = values.hp
 		this.damage = 0
 		this.conditions = []
 		this.initiative = 0
