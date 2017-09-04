@@ -1,26 +1,27 @@
 <template>
-<v-card class="blue-grey darken-2 white--text" column>
+<v-card class="grey  white--text" 
+	:class="{ 'darken-1' : active, 'darken-3' : !active }"
+	column>
 
 	<v-card-title>
 		<div class="headline">
 			{{entity.name}}
 		</div>
 
-		<!-- <div>
-		<v-layout class="inner-container" row> -->
 		<v-spacer />
+
 		<v-chip small class="green white--text">
 			<v-avatar class="green darken-4">
 				HP
 			</v-avatar>
-			{{entity.hp}}
+			{{currentHP}}
 		</v-chip>
+
 		<v-progress-linear class="progress-bar"
-			v-model="valueDeterminate" 
+			v-model="healthPercentage" 
 			height="3"
-			success></v-progress-linear>
-		<!-- </v-layout>
-		</div> -->
+			success>
+		</v-progress-linear>
 		
 		<div class="statuses">
 			{{statuses}}
@@ -36,7 +37,7 @@ export default {
 
 	data () {
 		return {
-			valueDeterminate : Math.round(Math.random() * 100)
+			// valueDeterminate : Math.round(Math.random() * 100)
 		}
 	},
 
@@ -48,6 +49,18 @@ export default {
 		
 		statuses () {
 			return this.conditions.join(', ')
+		},
+
+		healthPercentage () {
+			return this.entity.healthPercentage()
+		},
+
+		currentHP () {
+			return this.entity.currentHP()
+		},
+
+		active () {
+			return this.entity.activeTurn
 		}
 	}
 }

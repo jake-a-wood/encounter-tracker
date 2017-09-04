@@ -13,7 +13,7 @@
 import Entity from '~/components/entity.vue'
 export default {
 	mounted () {
-		for(var i = 0; i < 5; i++) {
+		for(var i = 0; i < 1; i++) {
 			this.$store.commit('entities/create', { hp : 1, name : 'Bob' })
 			this.$store.commit('entities/create', { hp : 10, name : 'Bobby' })
 			this.$store.commit('entities/create', { hp : 100, name : 'Bobby Bob' })

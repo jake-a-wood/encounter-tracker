@@ -11,6 +11,7 @@
 		<v-card-text>
 			<v-text-field label="Name" 
 				v-model="name"></v-text-field>
+				
 			<v-text-field label="Hit Points" 
 				v-model="hp"
 				type="number"></v-text-field>
@@ -18,10 +19,12 @@
 
 		<v-card-actions>
 			<v-spacer></v-spacer>
+
 			<v-btn class="blue--text darken-1" flat 
 				@click="onCloseClick">
 				Close
 			</v-btn>
+
 			<v-btn class="blue--text darken-1" flat 
 				@click="onSaveClick">
 				Save

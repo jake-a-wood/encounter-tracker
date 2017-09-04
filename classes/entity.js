@@ -47,6 +47,10 @@ class Entity {
 	bloodied () {
 		return this.currentHP <= Math.floor(this.hp / 2)
 	}
+
+	healthPercentage () {
+		return 100 - ((this.damage / this. hp) * 100)
+	}
 }
 
 export default Entity

@@ -5,30 +5,36 @@
 
 	<v-toolbar>
 		<v-chip class="teal white--text">
-			Round 0
+			Round {{round}}
 		</v-chip>
 		
 		<v-spacer></v-spacer>
 
-		<v-btn icon>
+		<v-btn icon
+			@click="onInitClick">
 			<v-icon>fa-sort-amount-desc</v-icon>
 		</v-btn>
 
 		<v-spacer></v-spacer>
 		
-		<v-btn icon>
+		<v-btn icon
+			@click="onPrevTurnClick">
 			<v-icon>fa-arrow-up</v-icon>
 		</v-btn>
 
 		<v-spacer></v-spacer>
 
-		<v-btn icon>
+		<v-btn icon
+			@click="onNextTurnClick">
 			<v-icon>fa-arrow-down</v-icon>
 		</v-btn>
 	</v-toolbar>
 
-	<entity-dialog :show="showDialog"
+	<entity-dialog :show="showEntityDialog"
 		@close="onDialogClose" />
+	
+	<init-dialog :show="showInitDialog"
+		@close="onInitDialogClose" />
 
 	<main>
 		<v-container fluid class="scroll">
@@ -41,7 +47,7 @@
 	<v-footer :absolute="footer.fixed">
 		<v-flex xs12 class="text-xs-center">
 			<v-btn class="indigo no-margin"
-				@click="onAddClick">
+				@click="onAddEntityClick">
 				<v-icon>add</v-icon>
 			</v-btn>
 		</v-flex>
@@ -52,22 +58,52 @@
 
 <script>
 import EntityDialog from '~/components/entity-dialog.vue'
+import InitDialog from '~/components/init-dialog.vue'
 export default {
 	components : {
-		EntityDialog
+		EntityDialog,
+		InitDialog
 	},
-	data: () => ({
-		footer: {
-			fixed: true
+
+	data : () => ({
+		footer : {
+			fixed : true
 		},
-		showDialog : false
+		showEntityDialog : false,
+		showInitDialog : false
 	}),
+
 	methods : {
-		onAddClick (e) {
-			this.showDialog = true
+		onAddEntityClick (e) {
+			this.showEntityDialog = true
 		},
+		
 		onDialogClose (e) {
-			this.showDialog = false
+			this.showEntityDialog = false
+		},
+
+		onInitClick (e) {
+			this.$store.commit('entities/resetAllInitiative')
+			this.$store.commit('encounter/resetRound')
+			this.showInitDialog = true
+		},
+
+		onInitDialogClose (e) {
+			this.showInitDialog = false
+		},
+
+		onPrevTurnClick (e) {
+			this.$store.dispatch('encounter/prevTurn')
+		},
+
+		onNextTurnClick (e) {
+			this.$store.dispatch('encounter/nextTurn')
+		},
+	},
+
+	computed : {
+		round () {
+			return this.$store.getters['encounter/round']
 		}
 	}
 }
