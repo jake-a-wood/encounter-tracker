@@ -1,7 +1,7 @@
 <template>
-<v-card class="grey  white--text" 
-	:class="{ 'darken-1' : active, 'darken-3' : !active }"
-	column>
+<v-card class="" 
+	:class="{ 'brown darken-1' : active, 'grey darken-3' : !active }"
+	column raised>
 
 	<v-card-title>
 		<div class="headline">

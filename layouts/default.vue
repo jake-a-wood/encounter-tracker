@@ -57,7 +57,7 @@
 </template>
 
 <script>
-import EntityDialog from '~/components/entity-dialog.vue'
+import EntityDialog from '~/components/entity-new-dialog.vue'
 import InitDialog from '~/components/init-dialog.vue'
 export default {
 	components : {
