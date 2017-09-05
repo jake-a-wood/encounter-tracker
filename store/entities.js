@@ -9,8 +9,8 @@ export const state = () => ({
 })
 
 export const mutations = {
-	create (state) {
-		state.entities.push(new Entity())
+	create (state, payload) {
+		state.entities.push(new Entity(payload))
 	},
 
 	update (state, payload) {
