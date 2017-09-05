@@ -1,11 +1,11 @@
 {
   "name": "encounter-tracker",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Tracks encounters for D&D 4e",
   "main": "index.js",
-  "config" : {
+  "config": {
     "nuxt": {
-      "port" : "3001"
+      "port": "3001"
     }
   },
   "scripts": {
