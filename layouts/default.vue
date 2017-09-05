@@ -37,6 +37,8 @@
 		@close="onInitDialogClose" />
 	
 	<entity-edit-dialog />
+	
+	<status-dialog />
 
 	<main>
 		<v-container fluid class="scroll">
@@ -62,11 +64,13 @@
 import EntityDialog from '~/components/entity-new-dialog.vue'
 import InitDialog from '~/components/init-dialog.vue'
 import EntityEditDialog from '~/components/entity-edit-dialog.vue'
+import StatusDialog from '~/components/status-dialog.vue'
 export default {
 	components : {
 		EntityDialog,
 		InitDialog,
-		EntityEditDialog
+		EntityEditDialog,
+		StatusDialog
 	},
 
 	data : () => ({

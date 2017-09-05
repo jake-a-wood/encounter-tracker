@@ -20,6 +20,11 @@
 		</v-card-text>
 		
 		<v-card-actions>
+			<v-btn class="red--text darken-1" flat 
+				@click="onDeleteClick">
+				Delete
+			</v-btn>
+
 			<v-spacer></v-spacer>
 
 			<v-btn class="blue--text darken-1" flat 
@@ -49,8 +54,14 @@ export default {
 				name : this.name,
                 editable : false
 			})
+		},
 
-            this.$emit('close')
+		onDeleteClick () {
+			if(confirm("Are you sure?")) {
+				this.$store.commit('entities/delete', {
+					entity: this.entity
+				})
+			}
 		}
 	},
 

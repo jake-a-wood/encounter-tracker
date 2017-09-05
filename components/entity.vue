@@ -11,17 +11,21 @@
 
 		<v-spacer />
 
-		<v-chip small class="green white--text">
-			<v-avatar class="green darken-4">
+		<v-chip small class="white--text"
+			:class="healthColor"
+			@click="onHPClick">
+			<v-avatar class="darken-4"
+				:class="healthColor">
 				HP
 			</v-avatar>
 			{{currentHP}}
 		</v-chip>
 
 		<v-progress-linear class="progress-bar"
+			:color-front="healthColor"
+			color-back="grey"
 			v-model="healthPercentage" 
-			height="3"
-			success>
+			height="3">
 		</v-progress-linear>
 		
 		<div class="statuses">
@@ -48,6 +52,13 @@ export default {
 				entity : this.entity,
 				editable : true
 			})
+		},
+
+		onHPClick (e) {
+			this.$store.commit('entities/update', {
+				entity : this.entity,
+				needsDamageHeal : true
+			})
 		}
 	},
 
@@ -67,6 +78,20 @@ export default {
 
 		currentHP () {
 			return this.entity.currentHP()
+		},
+
+		bloodied () {
+			return this.entity.bloodied()
+		},
+
+		dying () {
+			return this.entity.dying()
+		},
+
+		healthColor () {
+			if(this.dying) return 'grey'
+			if(this.bloodied) return 'red'
+			return 'green'
 		},
 
 		active () {
