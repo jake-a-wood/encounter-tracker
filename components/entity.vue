@@ -4,7 +4,8 @@
 	column raised>
 
 	<v-card-title>
-		<div class="headline">
+		<div class="headline"
+			@click="onNameClick">
 			{{entity.name}}
 		</div>
 
@@ -38,6 +39,15 @@ export default {
 	data () {
 		return {
 			// valueDeterminate : Math.round(Math.random() * 100)
+		}
+	},
+
+	methods : {
+		onNameClick (e) {
+			this.$store.commit('entities/update', {
+				entity : this.entity,
+				editable : true
+			})
 		}
 	},
 

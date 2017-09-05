@@ -35,6 +35,8 @@
 	
 	<init-dialog :show="showInitDialog"
 		@close="onInitDialogClose" />
+	
+	<entity-edit-dialog />
 
 	<main>
 		<v-container fluid class="scroll">
@@ -59,10 +61,12 @@
 <script>
 import EntityDialog from '~/components/entity-new-dialog.vue'
 import InitDialog from '~/components/init-dialog.vue'
+import EntityEditDialog from '~/components/entity-edit-dialog.vue'
 export default {
 	components : {
 		EntityDialog,
-		InitDialog
+		InitDialog,
+		EntityEditDialog
 	},
 
 	data : () => ({
