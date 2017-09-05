@@ -1,137 +1,116 @@
 <template>
-<div class="root">
+<v-card class="" 
+	:class="{ 'brown darken-1' : active, 'grey darken-3' : !active }"
+	column raised>
 
-	<div class="active-turn"
-		v-if="entity.activeTurn">
-	</div>
-
-	<div class="name"
-		@click="onNameClick">
-		<div>
-			{{entity.name || entity.id}}
+	<v-card-title>
+		<div class="headline"
+			@click="onNameClick">
+			{{entity.name}}
 		</div>
-	</div>
-	
-	<div class="conditions">
-	</div>
 
-	<div class="hp"
-		@click="onHpClick">
-		<span class="currentHP"
-			:class="bloodiedClass">
-			{{entity.currentHP()}} /
-		</span> 
-		<span class="maxHP">
-			{{entity.hp}}
-		</span>
-	</div>
+		<v-spacer />
 
-	<div class="initiative">
-		{{entity.initiative}}
-	</div>
+		<v-chip small class="white--text"
+			:class="healthColor"
+			@click="onHPClick">
+			<v-avatar class="darken-4"
+				:class="healthColor">
+				HP
+			</v-avatar>
+			{{currentHP}}
+		</v-chip>
 
-</div>
+		<v-progress-linear class="progress-bar"
+			:color-front="healthColor"
+			color-back="grey"
+			v-model="healthPercentage" 
+			height="3">
+		</v-progress-linear>
+		
+		<div class="statuses">
+			{{statuses}}
+		</div>
+	</v-card-title>
+
+</v-card>
 </template>
 
 <script>
 export default {
-	props : ['entity'],
+	props : [ 'entity' ],
+
+	data () {
+		return {
+			// valueDeterminate : Math.round(Math.random() * 100)
+		}
+	},
+
 	methods : {
-		onHpClick (e) {
-			this.$store.commit('entities/update', {
-				entity : this.entity,
-				needsDamageHeal : true
-			})
-		},
 		onNameClick (e) {
 			this.$store.commit('entities/update', {
 				entity : this.entity,
 				editable : true
 			})
+		},
+
+		onHPClick (e) {
+			this.$store.commit('entities/update', {
+				entity : this.entity,
+				needsDamageHeal : true
+			})
 		}
 	},
+
 	computed : {
-		bloodiedClass () {
-			return this.entity.bloodied() ? 'bloodied' : ''
+		conditions () {
+			// return this.$store.getters['conditions/read']
+			return []
+		},
+		
+		statuses () {
+			return this.conditions.join(', ')
+		},
+
+		healthPercentage () {
+			return this.entity.healthPercentage()
+		},
+
+		currentHP () {
+			return this.entity.currentHP()
+		},
+
+		bloodied () {
+			return this.entity.bloodied()
+		},
+
+		dying () {
+			return this.entity.dying()
+		},
+
+		healthColor () {
+			if(this.dying) return 'grey'
+			if(this.bloodied) return 'red'
+			return 'green'
+		},
+
+		active () {
+			return this.entity.activeTurn
 		}
 	}
 }
 </script>
 
-<style lang="scss" scoped>
-@import '~assets/css/mixins.scss';
+<style scoped>
+.progress-bar {
+	/* margin-bottom: 0; */
+}
 
-.root {
-	height: gh(2);
-	margin: gh(1);
-	display: flex;
-	justify-content: space-between;
+.statuses {
 
-	border: 2px solid gray;
-	background-color: yellow;
-	border-radius: 5px;
-	
-	position: relative;
-	overflow: visible;
+}
 
-	.active-turn {
-		border: gw(.75) solid transparent;
-		border-right: 0 solid transparent;
-		border-left: gw(.75) solid green;
-		position: absolute;
-		left: gw(-.5);
-	}
-
-	.name {
-		display: flex;
-		align-items: center;
-		width: gw(7);
-		padding-left: gw(1);
-		font-weight: bold;
-	}
-	.conditions {
-		width: gw(3);
-	}
-
-	.hp {
-		display: flex;
-		align-items: center;
-		justify-content: flex-end;
-		width: gw(4);
-		padding-right: gw(1);
-	}
-
-	.currentHP {
-		font-weight: bold;
-
-		&.bloodied {
-			color: red;
-		}
-	}
-
-	.maxHP {
-		font-size: 12px;
-	}
-
-	.initiative {
-		position: absolute;
-		right: gw(-.5);
-		top: gh(-.25);
-		
-		border-radius: 100%;
-		border: 1px solid black;
-		background-color: blue;
-		
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		width: gh(.75);
-		height: gh(.75);
-
-		color: #fff;
-		font-size: 12px;
-		font-weight: bold;
-		line-height: 1;
-	}
+.inner-container {
+	padding: 0;
 }
 </style>

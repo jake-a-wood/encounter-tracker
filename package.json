@@ -1,13 +1,18 @@
 {
   "name": "encounter-tracker",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Tracks encounters for D&D 4e",
   "main": "index.js",
+  "config": {
+    "nuxt": {
+      "port": "3001"
+    }
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nuxt",
     "build": "nuxt build",
-    "start" : "nuxt start"
+    "start": "nuxt start"
   },
   "repository": {
     "type": "git",
@@ -22,10 +27,13 @@
   "dependencies": {
     "normalize.css": "^7.0.0",
     "nuxt": "^1.0.0-rc4",
-    "vue-style-loader": "^3.0.1"
+    "vue-style-loader": "^3.0.1",
+    "vuetify": "^0.15.2"
   },
   "devDependencies": {
     "node-sass": "^4.5.3",
-    "sass-loader": "^6.0.6"
+    "sass-loader": "^6.0.6",
+    "stylus": "^0.54.5",
+    "stylus-loader": "^3.0.1"
   }
 }
